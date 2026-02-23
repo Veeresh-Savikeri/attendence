@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student QR Attendance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/html5-qrcode"></script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #4e73df, #1cc88a);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .scanner-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            text-align: center;
+            width: 100%;
+            max-width: 480px;
+            transition: transform 0.3s ease;
+        }
+
+        .scanner-card:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            font-weight: 700;
+            color: #4e73df;
+            margin-bottom: 10px;
+        }
+
+        p.text-muted {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        #reader {
+            width: 100%;
+            margin: 20px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #4e73df;
+            padding: 10px;
+            background: #f8f9fa;
+        }
+
+        .btn-custom {
+            border-radius: 30px;
+            padding: 12px 28px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn-start {
+            background-color: #1cc88a;
+            color: white;
+        }
+
+        .btn-start:hover {
+            background-color: #17a673;
+            box-shadow: 0 4px 12px rgba(23,166,115,0.4);
+        }
+
+        .btn-stop {
+            background-color: #e74a3b;
+            color: white;
+        }
+
+        .btn-stop:hover {
+            background-color: #c0392b;
+            box-shadow: 0 4px 12px rgba(192,57,43,0.4);
+        }
+
+        #status {
+            margin-top: 15px;
+            font-weight: 500;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="scanner-card">
+    <h2>📷 Student QR Attendance</h2>
+    <p class="text-muted">Scan a student QR code to mark attendance</p>
+
+    <button onclick="startScanner()" id="scanBtn" class="btn btn-custom btn-start">
+        Start Scan
+    </button>
+
+    <button onclick="stopScanner()" id="stopBtn" class="btn btn-custom btn-stop" style="display:none;">
+        Stop Scan
+    </button>
+
+    <div id="reader"></div>
+    <p id="status"></p>
+</div>
+
+<script>
+let html5QrCode;
+let scanning = false;
+
+function startScanner() {
+    if (scanning) return;
+
+    html5QrCode = new Html5Qrcode("reader");
+
+    Html5Qrcode.getCameras().then(devices => {
+        if (devices && devices.length) {
+            let cameraId = devices[0].id;
+
+            html5QrCode.start(
+                cameraId,
+                { fps: 10, qrbox: 250 },
+                onScanSuccess
+            );
+
+            scanning = true;
+            document.getElementById("scanBtn").style.display = "none";
+            document.getElementById("stopBtn").style.display = "inline";
+            document.getElementById("status").innerHTML = "🔍 Scanner started...";
+        }
+    }).catch(err => {
+        document.getElementById("status").innerHTML = "❌ Camera access denied.";
+    });
+}
+
+function stopScanner() {
+    if (!scanning) return;
+
+    html5QrCode.stop().then(() => {
+        scanning = false;
+        document.getElementById("scanBtn").style.display = "inline";
+        document.getElementById("stopBtn").style.display = "none";
+        document.getElementById("status").innerHTML = "⛔ Scanner stopped.";
+    });
+}
+
+function onScanSuccess(decodedText, decodedResult) {
+    document.getElementById("status").innerHTML = "✅ QR detected! Redirecting...";
+
+    html5QrCode.stop().then(() => {
+        window.location.href = decodedText;
+    });
+}
+</script>
+
+</body>
+</html>

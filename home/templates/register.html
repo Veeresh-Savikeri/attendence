@@ -1,0 +1,195 @@
+{% extends "base.html" %} {%block start%}
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div
+          class="card shadow-2-strong card-registration bg-dark text-light"
+          style="border-radius: 15px"
+        >
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+            <form method="POST">
+                {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6 mb-4 d-flex align-items-center">
+                  <div
+                    data-mdb-input-init
+                    class="form-outline datepicker w-100"
+                  >
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="birthdayDate"
+                      name="name"
+                    />
+                    <label for="birthdayDate" class="form-label"
+                      >Name</label
+                    >
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <h6 class="mb-2 pb-1">Gender:</h6>
+
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gender"
+                      id="femaleGender"
+                      value="Male"
+                      checked
+                    />
+                    <label class="form-check-label" for="femaleGender"
+                      >Male</label
+                    >
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gender"
+                      id="maleGender"
+                      value="Female"
+                    />
+                    <label class="form-check-label" for="maleGender"
+                      >FeMale</label
+                    >
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gender"
+                      id="otherGender"
+                      value="Others"
+                    />
+                    <label class="form-check-label" for="otherGender"
+                      >Other</label
+                    >
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div data-mdb-input-init class="form-outline">
+                    <input
+                      type="email"
+                      id="firstName"
+                      class="form-control form-control-lg"
+                      name = "email"
+                    />
+                    <label class="form-label" for="firstName">Email</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div data-mdb-input-init class="form-outline">
+                    <input
+                      type="Number"
+                      id="lastName"
+                      class="form-control form-control-lg"
+                      name = "phoneno"
+                    />
+                    <label class="form-label" for="lastName">Phone No</label>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+                   <select class="select form-control-lg w-100" name="country">
+                    <option value="1" disabled>Select Country</option>
+                    <option value="india">India</option>
+                    <option value="3">Subject 2</option>
+                    <option value="4">Subject 3</option>
+                  </select>
+                  <label class="form-label select-label"> Select  Country </label>
+                </div>
+                <div class="col-md-6 mb-4 pb-2">
+                   <select class="select form-control-lg w-100" name="state">
+                    <option value="1" disabled>Select State</option>
+                    <option value="karnataka">Karnataka</option>
+                    <option value="3">Subject 2</option>
+                    <option value="4">Subject 3</option>
+                  </select>
+                  <label class="form-label select-label">Select State</label>
+                </div>
+              </div>
+
+
+               <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+                   <select class="select form-control-lg  w-100" name="district">
+                    <option value="1" disabled>Select District</option>
+                    <option value="2">Haveri</option>
+                    <option value="3">Subject 2</option>
+                    <option value="4">Subject 3</option>
+                  </select>
+                  <label class="form-label select-label w-100"> Select District </label>
+                </div>
+                <div class="col-md-6 mb-4 pb-2">
+                   <div
+                    data-mdb-input-init
+                    class="form-outline datepicker w-100"
+                  >
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="birthdayDate"
+                      name = "address"
+                    />
+                    <label for="birthdayDate" class="form-label"
+                      >Native Address</label
+                    >
+                  </div>
+                 
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div data-mdb-input-init class="form-outline">
+                    <input
+                      type="Password"
+                      id="firstName"
+                      class="form-control form-control-lg"
+                      name = "password"
+                    />
+                    <label class="form-label" for="firstName">Password</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div data-mdb-input-init class="form-outline">
+                    <input
+                      type="Password"
+                      id="lastName"
+                      class="form-control form-control-lg"
+                      name = "repassword"
+                    />
+                    <label class="form-label" for="lastName">Confirm Password</label>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="mt-4 pt-2">
+                <input
+                  data-mdb-ripple-init
+                  class="btn btn-primary btn-lg"
+                  type="submit"
+                  value="Submit"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%endblock start%}
