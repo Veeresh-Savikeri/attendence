@@ -8,6 +8,5 @@ urlpatterns = [
   path("login/",login_view ,name="login"),
   path("dashboard/",dashboard ,name="dashboard"),
   path('student-qr/',student_qr, name='student_qr'),
-  path('mark-attendance/<int:student_id>/', mark_attendance, name='mark_attendance'),
 
 ]

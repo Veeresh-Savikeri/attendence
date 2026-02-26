@@ -1,6 +1,5 @@
 from django.http import HttpResponse
 import qrcode
-from datetime import date
 from io import BytesIO
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import *
@@ -8,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from teacher.models import *
 
 
 
@@ -67,29 +67,18 @@ def login_view(request):
 def dashboard(request):
     student = Profile.objects.get(user=request.user)
     # records = Attendance.objects.filter(student=student).order_by('-date')
-    total = Attendance.objects.filter(student=student).count()    
-    return render(request,"dashboard.html",{'records': total})
+    total = Attendance.objects.filter(student=student).count() 
+    details = Attendance.objects.filter(student=student)
+    
+    
+    return render(request,"dashboard.html",{'records': total,"details":details})
     
     
 @login_required
 def student_qr(request):
     student = Profile.objects.get(user=request.user)
-    qr_data = f"http://127.0.0.1:8000/mark-attendance/{student.id}/"
+    qr_data = f"http://127.0.0.1:8000/teacher/mark-attendance/{student.id}/"
     qr = qrcode.make(qr_data)
     buffer = BytesIO()
     qr.save(buffer, format="PNG")
     return HttpResponse(buffer.getvalue(), content_type="image/png")
-
-
-
-
-def mark_attendance(request, student_id):
-    print(type(student_id))
-    student = Profile.objects.get(id=student_id)
-
-    # Prevent duplicate attendance same day
-    if Attendance.objects.filter(student=student, date=date.today()).exists():
-        return HttpResponse("Already Marked Today")
-
-    Attendance.objects.create(student=student)
-    return HttpResponse("Attendance Marked Successfully")

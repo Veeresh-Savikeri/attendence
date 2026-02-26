@@ -9,18 +9,10 @@ class Profile(models.Model):
     state = models.CharField(max_length=50)
     district = models.CharField(max_length=50)
     address = models.TextField()
-
     def __str__(self):
         return self.user.username
     
 
-class Attendance(models.Model):
-    student = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    date = models.DateField(auto_now_add=True)
-    time = models.TimeField(auto_now_add=True)
-    status = models.CharField(max_length=10, default="Present")
-    def __str__(self):
-        return self.student.user.username
 
 # class User(models.Model):
 #     name = models.CharField(max_length=100)
