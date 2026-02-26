@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="path/to/font-awesome/css/font-awesome.min.css"
+    />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -14,7 +17,9 @@
   </head>
   <body>
     <nav class="navbar navbar-dark bg-dark justify-content-between">
-      <a class="navbar-brand mx-3">{%block name%}Welcome to Stjit{%endblock name%}</a>
+      <a class="navbar-brand mx-3"
+        >{%block name%}Welcome to Stjit{%endblock name%}</a
+      >
       <form class="form-inline d-flex mx-3">
         <div class="d-flex">{%block btn%}{%endblock btn%}</div>
         <input
@@ -29,6 +34,18 @@
       </form>
     </nav>
     {% block start %} {% endblock start %}
+    <footer class="text-center bg-dark text-light">
+    
+      <!-- Copyright -->
+      <div
+        class="text-center p-3"
+        style="background-color: rgba(0, 0, 0, 0.05)"
+      >
+        © 2026 Copyright
+        
+      </div>
+      <!-- Copyright -->
+    </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

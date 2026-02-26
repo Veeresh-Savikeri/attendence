@@ -1,195 +1,144 @@
-{% extends "base.html" %} {%block start%}
-<section class="vh-100 gradient-custom">
-  <div class="container py-5 h-100">
-    <div class="row justify-content-center align-items-center h-100">
-      <div class="col-12 col-lg-9 col-xl-7">
-        <div
-          class="card shadow-2-strong card-registration bg-dark text-light"
-          style="border-radius: 15px"
-        >
-          <div class="card-body p-4 p-md-5">
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-            <form method="POST">
-                {% csrf_token %}
-              <div class="row">
-                <div class="col-md-6 mb-4 d-flex align-items-center">
-                  <div
-                    data-mdb-input-init
-                    class="form-outline datepicker w-100"
-                  >
-                    <input
-                      type="text"
-                      class="form-control form-control-lg"
-                      id="birthdayDate"
-                      name="name"
-                    />
-                    <label for="birthdayDate" class="form-label"
-                      >Name</label
-                    >
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <h6 class="mb-2 pb-1">Gender:</h6>
+{% extends "base.html" %}
+{% block start %}
 
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="gender"
-                      id="femaleGender"
-                      value="Male"
-                      checked
-                    />
-                    <label class="form-check-label" for="femaleGender"
-                      >Male</label
-                    >
-                  </div>
+<style>
+.gradient-bg {
+    background: linear-gradient(135deg, #24898d, #5e1a47f8);
+    padding: 60px 0;
+}
 
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="gender"
-                      id="maleGender"
-                      value="Female"
-                    />
-                    <label class="form-check-label" for="maleGender"
-                      >FeMale</label
-                    >
-                  </div>
+.card-registration {
+    backdrop-filter: blur(15px);
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+}
 
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="gender"
-                      id="otherGender"
-                      value="Others"
-                    />
-                    <label class="form-check-label" for="otherGender"
-                      >Other</label
-                    >
-                  </div>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div data-mdb-input-init class="form-outline">
-                    <input
-                      type="email"
-                      id="firstName"
-                      class="form-control form-control-lg"
-                      name = "email"
-                    />
-                    <label class="form-label" for="firstName">Email</label>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div data-mdb-input-init class="form-outline">
-                    <input
-                      type="Number"
-                      id="lastName"
-                      class="form-control form-control-lg"
-                      name = "phoneno"
-                    />
-                    <label class="form-label" for="lastName">Phone No</label>
-                  </div>
-                </div>
-              </div>
+.form-control, select {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+}
 
+.form-control:focus, select:focus {
+    box-shadow: 0 0 10px #00c6ff;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
 
-              <div class="row">
-                <div class="col-md-6 mb-4 pb-2">
-                   <select class="select form-control-lg w-100" name="country">
-                    <option value="1" disabled>Select Country</option>
-                    <option value="india">India</option>
-                    <option value="3">Subject 2</option>
-                    <option value="4">Subject 3</option>
-                  </select>
-                  <label class="form-label select-label"> Select  Country </label>
-                </div>
-                <div class="col-md-6 mb-4 pb-2">
-                   <select class="select form-control-lg w-100" name="state">
-                    <option value="1" disabled>Select State</option>
-                    <option value="karnataka">Karnataka</option>
-                    <option value="3">Subject 2</option>
-                    <option value="4">Subject 3</option>
-                  </select>
-                  <label class="form-label select-label">Select State</label>
-                </div>
-              </div>
+.form-label {
+    color: #ccc;
+}
 
+.btn-custom {
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    border: none;
+    border-radius: 12px;
+    padding: 10px 25px;
+    transition: 0.3s ease;
+}
 
-               <div class="row">
-                <div class="col-md-6 mb-4 pb-2">
-                   <select class="select form-control-lg  w-100" name="district">
-                    <option value="1" disabled>Select District</option>
-                    <option value="2">Haveri</option>
-                    <option value="3">Subject 2</option>
-                    <option value="4">Subject 3</option>
-                  </select>
-                  <label class="form-label select-label w-100"> Select District </label>
-                </div>
-                <div class="col-md-6 mb-4 pb-2">
-                   <div
-                    data-mdb-input-init
-                    class="form-outline datepicker w-100"
-                  >
-                    <input
-                      type="text"
-                      class="form-control form-control-lg"
-                      id="birthdayDate"
-                      name = "address"
-                    />
-                    <label for="birthdayDate" class="form-label"
-                      >Native Address</label
-                    >
-                  </div>
-                 
-                </div>
-              </div>
+.btn-custom:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 114, 255, 0.5);
+}
+</style>
 
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div data-mdb-input-init class="form-outline">
-                    <input
-                      type="Password"
-                      id="firstName"
-                      class="form-control form-control-lg"
-                      name = "password"
-                    />
-                    <label class="form-label" for="firstName">Password</label>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div data-mdb-input-init class="form-outline">
-                    <input
-                      type="Password"
-                      id="lastName"
-                      class="form-control form-control-lg"
-                      name = "repassword"
-                    />
-                    <label class="form-label" for="lastName">Confirm Password</label>
-                  </div>
-                </div>
-              </div>
+<section class="gradient-bg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                <div class="card card-registration text-light p-5">
+                    <h3 class="text-center mb-4">✨ Registration Form</h3>
 
+                    <form method="POST">
+                        {% csrf_token %}
 
-              <div class="mt-4 pt-2">
-                <input
-                  data-mdb-ripple-init
-                  class="btn btn-primary btn-lg"
-                  type="submit"
-                  value="Submit"
-                />
-              </div>
-            </form>
-          </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control form-control-lg" name="name" required>
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label d-block">Gender</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" value="Male" checked>
+                                    <label class="form-check-label">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" value="Female">
+                                    <label class="form-check-label">Female</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" value="Others">
+                                    <label class="form-check-label">Other</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control form-control-lg" name="email" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control form-control-lg" name="phoneno" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <label class="form-label">Country</label>
+                                <select class="form-control form-control-lg" name="country">
+                                    <option>India</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4 mb-4">
+                                <label class="form-label">State</label>
+                                <select class="form-control form-control-lg" name="state">
+                                    <option>Karnataka</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4 mb-4">
+                                <label class="form-label">District</label>
+                                <select class="form-control form-control-lg" name="district">
+                                    <option>Haveri</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Native Address</label>
+                            <input type="text" class="form-control form-control-lg" name="address">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control form-control-lg" name="password" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control form-control-lg" name="repassword" required>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-custom btn-lg text-white">
+                                Register
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
-{%endblock start%}
+{% endblock %}

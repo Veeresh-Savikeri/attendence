@@ -108,6 +108,9 @@
 
     <div id="reader"></div>
     <p id="status"></p>
+    <div id="message-container"></div>
+  
+    
 </div>
 
 <script>
@@ -147,16 +150,34 @@ function stopScanner() {
         document.getElementById("scanBtn").style.display = "inline";
         document.getElementById("stopBtn").style.display = "none";
         document.getElementById("status").innerHTML = "⛔ Scanner stopped.";
+        document.getElementById("msg").innerHTML = "{{ message }}";  // Display any server message if needed
     });
 }
 
 function onScanSuccess(decodedText, decodedResult) {
-    document.getElementById("status").innerHTML = "✅ QR detected! Redirecting...";
+    document.getElementById("status").innerHTML = "✅ QR detected!";
 
+    // show a temporary success message under the scanner
+    const msg = document.getElementById("message-container");
+    if (msg) {
+        msg.innerHTML = `<div class="alert alert-success mt-2" role="alert">Attendance marked successfully.</div>`;
+    }
+
+    // stop scanner, then wait briefly so user sees the message before redirect
     html5QrCode.stop().then(() => {
-        window.location.href = decodedText;
+        setTimeout(() => {
+            window.location.href = decodedText;
+        }, 1000);
     });
 }
+
+// Auto-start scanner when page loads (attempts to open camera immediately)
+document.addEventListener('DOMContentLoaded', function() {
+    // slight delay to ensure UI is ready and permission prompt appears
+    setTimeout(function() {
+        startScanner();
+    }, 200);
+});
 </script>
 
 </body>

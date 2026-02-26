@@ -1,29 +1,90 @@
 {% extends "base.html" %}
-{%block start%}
+{% block start %}
 
-<section class="vh-100">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card shadow-2-strong" style="border-radius: 1rem;">
-          <form class="card-body p-5 text-center bg-dark text-light rounded" method="POST">
-            {%csrf_token%}
-            <h3 class="mb-5">Login</h3>
-            <div data-mdb-input-init class="form-outline mb-4">
-              <input type="text" id="typeEmailX-2" class="form-control form-control-lg" name="username"/>
-              <label class="form-label" for="typeEmailX-2" >User name</label>
+<style>
+  body {
+    background: linear-gradient(135deg, #1f4037, #99f2c8);
+  }
+
+  .login-card {
+    backdrop-filter: blur(15px);
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .form-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+  }
+
+  .form-control:focus {
+    box-shadow: 0 0 10px #00ffcc;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+
+  .form-label {
+    color: #ccc;
+  }
+
+  .btn-custom {
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    border: none;
+    border-radius: 10px;
+    transition: 0.3s ease;
+  }
+
+  .btn-custom:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 114, 255, 0.4);
+  }
+
+  .login-title {
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+</style>
+
+<section class="vh-100 d-flex align-items-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card login-card p-4">
+          <form method="POST">
+            {% csrf_token %}
+
+            <h3 class="text-center text-light mb-4 login-title">
+              🔐 Welcome Back
+            </h3>
+
+            <div class="mb-4">
+              <label class="form-label">Username</label>
+              <input type="text" class="form-control form-control-lg" name="username" required>
             </div>
 
-            <div data-mdb-input-init class="form-outline mb-4">
-              <input type="password" id="typePasswordX-2" class="form-control form-control-lg" name="password"/>
-              <label class="form-label" for="typePasswordX-2" >Password</label>
+            <div class="mb-4">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control form-control-lg" name="password" required>
             </div>
-            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
-            <hr class="my-4">
-           </form>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-custom btn-lg text-white">
+                Login
+              </button>
+            </div>
+
+            <div class="text-center mt-4 text-light">
+              <small>Don't have an account? <a href="#" class="text-info">Register</a></small>
+            </div>
+
+          </form>
         </div>
       </div>
     </div>
   </div>
 </section>
-{%endblock start%}
+
+{% endblock start %}

@@ -61,15 +61,13 @@ def staff_login(request):
 
 def mark_attendance(request, student_id):
     student = Profile.objects.get(id=student_id)
-
     # determine current logged-in staff
     try:
         current_staff = Staff.objects.get(user=request.user)
     except Staff.DoesNotExist:
         return HttpResponse("Current user is not registered as staff", status=403)
-
     # Prevent duplicate attendance same day
     if Attendance.objects.filter(student=student, staff=current_staff, date=date.today()).exists():
-        return HttpResponse("Already Marked Today")
+        return redirect("/teacher/staff-dashboard")
     Attendance.objects.create(student=student, staff=current_staff)
-    return HttpResponse("Attendance Marked Successfully")
+    return redirect("/teacher/staff-dashboard")
