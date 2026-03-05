@@ -48,7 +48,6 @@ def register_view(request):
        )
     return render(request,"register.html")
 
-@login_required
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get('username')
