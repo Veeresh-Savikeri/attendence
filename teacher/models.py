@@ -14,9 +14,19 @@ class Staff(models.Model):
     
 class Attendance(models.Model):
     student = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    staff = models.ForeignKey('Staff', on_delete=models.CASCADE)
+    session = models.ForeignKey('Session',on_delete=models.CASCADE,null=True,blank=True)
     date = models.DateField(auto_now_add=True)
     time = models.TimeField(auto_now_add=True)
-    status = models.CharField(max_length=10, default="Present")
     def __str__(self):
-        return f"{self.student.user.username} - {self.staff.user.username}"
+        return f"{self.student.user.username}"
+
+class Session(models.Model):
+    batchcode = models.CharField(max_length=50)
+    subject = models.CharField(max_length=100)
+    branch = models.CharField(max_length=100)
+    trainer = models.CharField(max_length=100)
+    mode = models.CharField(max_length=10)
+    started = models.DateField(auto_now_add=True)
+    
+    def __str__(self) -> str:
+        return f"{self.batchcode}-{self.subject}"

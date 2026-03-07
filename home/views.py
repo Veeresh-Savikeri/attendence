@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from teacher.models import *
+from datetime import datetime
 
 
 
@@ -68,15 +69,16 @@ def dashboard(request):
     # records = Attendance.objects.filter(student=student).order_by('-date')
     total = Attendance.objects.filter(student=student).count() 
     details = Attendance.objects.filter(student=student)
-    
-    
-    return render(request,"dashboard.html",{'records': total,"details":details})
+    date = datetime.now().date()
+    time = datetime.now().strftime("%H:%M:%S")
+   
+    return render(request,"dashboard.html",{'records': total,"details":details,"date":date,"time":time})
     
     
 @login_required
 def student_qr(request):
     student = Profile.objects.get(user=request.user)
-    qr_data = f"http://127.0.0.1:8000/teacher/mark-attendance/{student.id}/"
+    qr_data = f"{student.id}-veeresh@1234/"
     qr = qrcode.make(qr_data)
     buffer = BytesIO()
     qr.save(buffer, format="PNG")

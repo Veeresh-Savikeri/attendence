@@ -10,11 +10,12 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
+    
      <script src="https://unpkg.com/html5-qrcode"></script>
   </head>
   <body>
     <nav class="navbar navbar-dark bg-dark justify-content-between">
-      <a class="navbar-brand mx-3">{%block name%}Welcome to Stjit{%endblock name%}</a>
+     {%block name%} <a class="navbar-brand mx-3" href="http://127.0.0.1:8000">Welcome to Stjit</a>{%endblock name%}
       <form class="form-inline d-flex mx-3">
         <div class="d-flex">{%block btn%}{%endblock btn%}</div>
         <input
