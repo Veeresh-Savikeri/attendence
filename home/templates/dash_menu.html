@@ -34,14 +34,24 @@
         >
           <h1 class="text-center"><i class="fa-solid fa-user-graduate"></i></h1>
           <a
-            href=""
+            href="dashboard"
             class="text-decoration-none text-white d-block mb-2 border-bottom border-white"
             >Dashboard</a
           >
           <a
-            href=""
+            href="http://127.0.0.1:8000/attendance"
             class="text-decoration-none text-white d-block mb-2 border-bottom border-white"
             >Attendance</a
+          >
+          <a
+            href=""
+            class="text-decoration-none text-white d-block mb-2 border-bottom border-white"
+            >Recorded class</a
+          >
+          <a
+            href=""
+            class="text-decoration-none text-white d-block mb-2 border-bottom border-white"
+            >Payment Details</a
           >
           <a
             href=""
@@ -53,11 +63,7 @@
             class="text-decoration-none text-white d-block mb-2 border-bottom border-white"
             >Settings</a
           >
-          <a
-            href=""
-            class="text-decoration-none text-white d-block mb-2 border-bottom border-white"
-            >Logout</a
-          >
+          
         </div>
 
         <div style="margin-left: 270px; width: calc(100% - 270px)">
@@ -82,7 +88,7 @@
               <h1 class="w-25"><i class="fa-solid fa-circle-user"></i></h1>
               <div class="w-75 text-start px-3">
                 <h5 class="card-title">
-                  {% block prof_name %} {% endblock prof_name %}
+                  {% block prof_name %} {{ request.user.username |upper }}{% endblock prof_name %}
                 </h5>
                 <p class="card-text">Student</p>
               </div>
