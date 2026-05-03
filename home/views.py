@@ -145,4 +145,9 @@ def attendance(request):
     }
     return render(request, "attendence.html", context)
 
+def stu_details(request):
+    student = Profile.objects.get(user = request.user.id)
     
+
+    
+    return render(request,"stu_details.html",context={"student":student})

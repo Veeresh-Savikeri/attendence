@@ -10,8 +10,7 @@ class Profile(models.Model):
     district = models.CharField(max_length=50)
     address = models.TextField()
     def __str__(self):
-        return self.user.username
-    
+        return self.user.username    
 
 
 # class User(models.Model):

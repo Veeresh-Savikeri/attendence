@@ -9,4 +9,5 @@ urlpatterns = [
     path('student-qr/', student_qr, name='student_qr'),
     path("dashboard/", dashboard, name="dashboard"),
     path("attendance/", attendance, name="attendence"),
+    path("stu-details/",stu_details, name="student_details")
 ]

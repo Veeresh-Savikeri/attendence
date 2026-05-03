@@ -23,7 +23,7 @@
   {% for session, records in session_attendance.items %}
     <section class="session-group mb-5">
       <div class="d-flex align-items-center mb-3">
-        <h3 class="h4 text-primary mb-0">Session {{ session }}</h3>
+        <h3 class="h4 text-primary mb-0">Subject-code : {{ session }}</h3>
         <span class="badge bg-secondary ms-2">{{ records|length }} Records</span>
       </div>
 
@@ -31,7 +31,7 @@
         <table class="table table-hover border">
           <thead class="table-light">
             <tr>
-              <th scope="col">Student Username</th>
+              <th scope="col">Student Name</th>
               <th scope="col">Date</th>
               <th scope="col">Time</th>
             </tr>
