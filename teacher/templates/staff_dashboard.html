@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{%block btn%}
+<a class="btn btn-dark" href="http://127.0.0.1:8000/login/">Login</a>
+<a class="btn btn-dark" href="http://127.0.0.1:8000/register/">Register</a>
+<a class="btn btn-dark" href="http://127.0.0.1:8000/teacher/staff-login/">Staff</a>
+{%endblock btn%}
 {% block start %}
 <div class="container"><a href="session/" class="btn btn-warning rounded mt-4 d-block fw-bold">Create Session</a>
 </div>

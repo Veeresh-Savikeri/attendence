@@ -1,23 +1,28 @@
 {% extends "base.html" %}
+{%block btn%}
+<a class="btn btn-dark" href="http://127.0.0.1:8000/login/">Login</a>
+<a class="btn btn-dark" href="http://127.0.0.1:8000/register/">Register</a>
+<a class="btn btn-dark" href="http://127.0.0.1:8000/teacher/staff-login/">Staff</a>
+{%endblock btn%}
 {% block start %}
 
 <style>
   body {
-    background: linear-gradient(135deg, #1f4037, #99f2c8);
+    background: linear-gradient(to right, #f8fafc, #95b5df);
   }
 
   .login-card {
     backdrop-filter: blur(15px);
-    background: rgba(0, 0, 0, 0.6);
+    background: rgb(0, 0, 0);
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   }
 
   .form-control {
-    background-color: rgba(255, 255, 255, 0.1);
+     background-color:rgba(255, 255, 255, 0.6);
     border: none;
     border-radius: 10px;
-    color: #fff;
+    color: black;
   }
 
   .form-control:focus {
@@ -62,7 +67,7 @@
 
             <div class="mb-4">
               <label class="form-label">Username</label>
-              <input type="text" class="form-control form-control-lg" name="username" required>
+              <input type="text" class="form-control form-control-lg" name="username" required placeholder="Username">
             </div>
 
             <div class="mb-4">
@@ -77,7 +82,7 @@
             </div>
 
             <div class="text-center mt-4 text-light">
-              <small>Don't have an account? <a href="#" class="text-info">Register</a></small>
+              <small>Don't have an account? <a href="http://127.0.0.1:8000/register/" class="text-info">Register</a></small>
             </div>
 
           </form>

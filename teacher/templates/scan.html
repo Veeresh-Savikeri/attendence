@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>QR Attendance Scanner</title>
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- QR Scanner -->
-    <script src="https://unpkg.com/html5-qrcode"></script>
-
+{% extends "base.html" %}
+{%block btn%}
+<a class="btn btn-dark" href="http://127.0.0.1:8000/login/">Login</a>
+<a class="btn btn-dark" href="http://127.0.0.1:8000/register/">Register</a>
+<a class="btn btn-dark" href="http://127.0.0.1:8000/teacher/staff-login/">Staff</a>
+{%endblock btn%}
+{%block start%}
     <style>
         body {
             background: linear-gradient(135deg, #1e3c72, #2a5298);
@@ -42,9 +36,7 @@
         }
     </style>
 
-</head>
 
-<body>
 
 <div class="container h-100 d-flex align-items-center">
 
@@ -84,13 +76,17 @@
 <script>
 
 let session_id = "{{ session_id }}";  // Django session id
-
+let isProcessing = false;  // Flag to prevent multiple scans
 
 function onScanSuccess(decodedText) {
+    if (isProcessing) {
+        return;  // Ignore scan if still processing previous one
+    }
 
+    isProcessing = true;
     let student_id = decodedText.split("-")[0];
 
-    fetch("http://127.0.0.1:8000/teacher/mark-attendance/", {
+    fetch("/teacher/mark-attendance/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -101,15 +97,21 @@ function onScanSuccess(decodedText) {
             session_id: parseInt(session_id)
         })
     })
-
     .then(response => response.json())
-
     .then(data => {
-
-        document.querySelector(".person").innerText = data.data;
-
+        document.querySelector(".person").innerText = data.data || data.error || "Attendance processed";
+    })
+    .catch(err => {
+        document.querySelector(".person").innerText = "Error processing attendance";
+        console.error(err);
+    })
+    .finally(() => {
+        // Wait 3 seconds before allowing next scan
+        setTimeout(() => {
+            isProcessing = false;
+            document.querySelector(".person").innerText = "Ready for next scan...";
+        }, 3000);
     });
-
 }
 
 
@@ -150,5 +152,4 @@ function getCookie(name) {
 
 </script>
 
-</body>
-</html>
+{% endblock start%}

@@ -1,43 +1,58 @@
+{%extends "base.html"%}
+{%block btn%}
+<a class="btn btn-dark" href="http://127.0.0.1:8000/login/">Login</a>
+<a class="btn btn-dark" href="http://127.0.0.1:8000/register/">Register</a>
+<a class="btn btn-dark" href="http://127.0.0.1:8000/teacher/staff-login/">Staff</a>
+{%endblock btn%}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Teacher Login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+{% block start %}
     <style>
         body {
-            background: linear-gradient(135deg, #052da5, #7e8bff);
+            background: linear-gradient(to right, #f8fafc, #95b5df);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px;
         }
 
         .login-card {
-            background:linear-gradient(135deg, #040405, #555d66);
+            background: linear-gradient(135deg, #040405, #555d66);
             padding: 40px;
             border-radius: 16px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             width: 100%;
             max-width: 400px;
+            text-align: center;
         }
 
         .login-card h2 {
-            font-weight: 700;
-            color: #4e73df;
+            font-weight: 500;
+            color: white;
             margin-bottom: 20px;
             text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .form-control {
             border-radius: 10px;
             padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        .mb-3 {
+            text-align: left;
         }
 
         .btn-login {
@@ -48,6 +63,8 @@
             padding: 12px;
             width: 100%;
             transition: 0.3s;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-login:hover {
@@ -61,11 +78,10 @@
             text-align: center;
         }
     </style>
-</head>
-<body>
 
-<div class="login-card">
-    <h2>Teacher Login</h2>
+<div class="login-container">
+    <div class="login-card">
+    <h2>Staff Login</h2>
     <form method="POST">
         {% csrf_token %}
         <div class="mb-3">
@@ -80,7 +96,7 @@
     {% for message in messages %}
         <p class="alert-message text-danger">{{ message }}</p>
     {% endfor %}
+    </div>
 </div>
 
-</body>
-</html>
+{% endblock start %}

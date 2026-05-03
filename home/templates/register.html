@@ -1,24 +1,28 @@
 {% extends "base.html" %}
+{%block btn%}
+<a class="btn btn-dark" href="http://127.0.0.1:8000/login/">Login</a>
+<a class="btn btn-dark" href="http://127.0.0.1:8000/register/">Register</a>
+<a class="btn btn-dark" href="http://127.0.0.1:8000/teacher/staff-login/">Staff</a>
+{%endblock btn%}
 {% block start %}
-
 <style>
 .gradient-bg {
-    background: linear-gradient(135deg, #24898d, #5e1a47f8);
+   background: linear-gradient(to right, #f8fafc, #95b5df);
     padding: 60px 0;
 }
 
 .card-registration {
     backdrop-filter: blur(15px);
-    background: rgba(0, 0, 0, 0.65);
+    background: rgb(0, 0, 0);
     border-radius: 20px;
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
 .form-control, select {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color:rgba(255, 255, 255, 0.6);
     border: none;
     border-radius: 10px;
-    color: #fff;
+    color: black;
 }
 
 .form-control:focus, select:focus {
@@ -58,7 +62,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-4">
                                 <label class="form-label">Name</label>
-                                <input type="text" class="form-control form-control-lg" name="name" required>
+                                <input type="text" class="form-control form-control-lg" name="name" required placeholder="Full Name">
                             </div>
 
                             <div class="col-md-6 mb-4">
@@ -81,11 +85,11 @@
                         <div class="row">
                             <div class="col-md-6 mb-4">
                                 <label class="form-label">Email</label>
-                                <input type="email" class="form-control form-control-lg" name="email" required>
+                                <input type="email" class="form-control form-control-lg" name="email" required placeholder="Email">
                             </div>
                             <div class="col-md-6 mb-4">
                                 <label class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control form-control-lg" name="phoneno" required>
+                                <input type="tel" class="form-control form-control-lg" name="phoneno" required placeholder="Phone Number">
                             </div>
                         </div>
 
@@ -114,17 +118,17 @@
 
                         <div class="mb-4">
                             <label class="form-label">Native Address</label>
-                            <input type="text" class="form-control form-control-lg" name="address">
+                            <input type="text" class="form-control form-control-lg" name="address" placeholder="Native Address">
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-4">
                                 <label class="form-label">Password</label>
-                                <input type="password" class="form-control form-control-lg" name="password" required>
+                                <input type="password" class="form-control form-control-lg" name="password" required placeholder="Create Password">
                             </div>
                             <div class="col-md-6 mb-4">
                                 <label class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control form-control-lg" name="repassword" required>
+                                <input type="password" class="form-control form-control-lg" name="repassword" required placeholder="Confirm Password">
                             </div>
                         </div>
 
@@ -133,7 +137,9 @@
                                 Register
                             </button>
                         </div>
-
+                        <div class="text-center mt-4 text-light">
+                            <small>Do you have an account? <a href="http://127.0.0.1:8000/login/" class="text-info">Login</a></small>
+                        </div>
                     </form>
                 </div>
             </div>
