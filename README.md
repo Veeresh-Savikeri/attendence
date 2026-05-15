@@ -27,4 +27,4 @@ The main objective of this project is to digitize the traditional attendance pro
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/your-username/your-repository-name.git
+git clone https://github.com/mystery-one/attendence-mgt-system.git
